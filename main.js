@@ -95,7 +95,9 @@ const app = createApp({
             const textItems = textContent.items.map((item) => item.str);
             const fullText = textItems.join(" ");
             if (
-              fullText.toLowerCase().includes(searchTerm.value.toLowerCase())
+              fullText
+                .toLocaleLowerCase("tr")
+                .includes(searchTerm.value.toLocaleLowerCase("tr"))
             ) {
               searchResults.value.push(pageNum);
             }
