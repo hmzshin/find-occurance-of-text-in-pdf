@@ -31,13 +31,12 @@ const app = createApp({
             <span class="ml-2">{{ fileName }}</span>
           </div>
 
-
-
           <el-input
+            @keypress.enter = "searchInPdf"
             v-if="pdfLoaded"
             v-model="searchTerm"
             placeholder="Aramak istediğiniz kelimeyi girin" 
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 m-auto mt-10"
+            class="w-1/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 m-auto mt-10"
           />
           <el-button
             type="submit"
@@ -48,13 +47,15 @@ const app = createApp({
             Ara
           </el-button>
 
-
-          <div v-if="searchResults.length" class="w-1/3 m-auto mt-10 flex flex-col items-center justify-center">
-            <h3 class="text-lg font-bold text-slate-400">   Bulunduğu Sayfalar: {{ searchResults.length }}  Sonuç </h3>
+           <div v-if="searchResults.length" class="w-auto p-5 text-center">
+            Sonuç: {{ searchResults.length }}
+           </div>
+          <div v-if="searchResults.length" class="w-1/3 m-auto mt-0 flex items-center justify-center">
+            <h3 class="text-lg mt-0 font-bold text-slate-400 pr-1">   Bulunduğu Sayfalar: </h3>
 
           <ul class="flex">
             <li v-for="(page, index) in searchResults" :key="index">
-             {{ page }}<span v-if="index < searchResults.length - 1">,</span>
+             {{ page }}<span v-if="index != searchResults.length - 1">,</span>
             </li>
           </ul>
           </div>
